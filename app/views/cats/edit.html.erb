@@ -1,16 +1,17 @@
 <form action="http://localhost:3000/cats/<%=@cat.id%>" method="post">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
   <label for="cat_name">Name</label>
   <input type="text" name="cat[name]" id="cat_name" value=<%=@cat.name%>>
   <label for="cat_age">Age</label>
   <input type="number" name="cat[age]" id="cat_age" value=<%=@cat.age%>>
-  <label for="cat_color">Color</label>
+  <label for="cat_color">Color</labe
+    l>
   <select name="cat[color]" id="cat_color" value="<%=@cat.color%>">
   <% @colors.each do |color| %>
-    <% if color == @cat.color %>
-      <option selected="selected" value=<%=color%>><%=color%></option>
-    <% else %>
-      <option value = <%=color%>><%=color%></option>
-    <% end %>
+    <option <%= 'selected' if color == @cat.color %>
+      value="<%=color%>"> <%=color%> </option>
   <% end %>
   </select>
   <label for="cat_sex">Sex</label>

@@ -1,6 +1,34 @@
-<h1>Listing Cat</h1>
+<h1>Showing cat stuff</h1>
 
 <ul>
-   <%= "#{@cat.name} #{@cat.color}" %>
-</ul>
+   <%= "cat object stuff: #{@cat.name} #{@cat.color}" %>
+ </p>
+   <% @cat.cat_rental_requests.each do |request| %>
+      <%= "cat request stuff: #{request.cat_id.to_s}, #{request.begin_date}, #{request.end_date}, #{request.status}" %>
+    </p>
+   <% end %>
 
+   <% @cat.cat_rental_requests.each do |request| %>
+   <% next unless request.status == 'undecided'%>
+   <% next unless User.find_by_session_token(session[:session_token]).id == Cat.find(request.cat_id).user_id%>
+     <form action="http://localhost:3000/cat_rental_request" method="post">
+       <input type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
+       <input type ="hidden" name="_method" value="put">
+       <label for="approve_request">Approve or Deny Request for  <%= request.id %></label>
+       <input type="hidden" name="cat_rental_request[status]" id="approve_request" value='approve' >
+       <input type="hidden" name="cat_rental_request[id]" value=<%=request.id%> >
+       <input type="submit" value="Approve">
+    </form>
+    <form action="http://localhost:3000/cat_rental_request" method="post">
+      <input type="hidden"
+             name="authenticity_token"
+             value="<%= form_authenticity_token %>">
+       <input type ="hidden" name="_method" value="put">
+       <input type="hidden" name="cat_rental_request[status]" value="deny">
+       <input type="hidden" name="cat_rental_request[id]" value=<%=request.id%> >
+       <input type="submit" value="Deny">
+    </form>
+   <% end %>
+</ul>

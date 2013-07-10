@@ -1,5 +1,9 @@
 <h1>Listing Cats</h1>
 
+<% flash[:notices].try(:each) do |msg| %>
+  <%= msg %>
+<% end %>
+
 <ul>
   <% @cats.each do |cat| %>
     <li>

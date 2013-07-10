@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710130652) do
+ActiveRecord::Schema.define(:version => 20130710184823) do
+
+  create_table "cat_rental_requests", :force => true do |t|
+    t.integer  "cat_id"
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.string   "status"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "cats", :force => true do |t|
     t.integer  "age"
@@ -22,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20130710130652) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "session_token"
   end
 
 end

@@ -1,7 +1,17 @@
 Nncats::Application.routes.draw do
 
+  resource :session, only: [:new, :create, :destroy]
+  get 'logout' => 'sessions#logout'
+
+  resources :users, only: [:new, :create]
+
+  resources :cat_rental_requests #make plural
+
   resources :cats, except: :update
   post 'cats/:id' => 'cats#update'
+
+
+  # post 'cat_rental_request/approve' => 'cat_rental_requests#approve'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
