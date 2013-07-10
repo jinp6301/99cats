@@ -9,7 +9,7 @@ class CatsController < ApplicationController
   end
 
   def new
-
+    @colors = %w(white red blue black brown green orange tortoiseshell)
   end
 
   def create
@@ -23,6 +23,7 @@ class CatsController < ApplicationController
   end
 
   def edit
+    @colors = %w(white red blue black brown green orange tortoiseshell)
     @cat = Cat.find(params[:id])
   end
 

@@ -4,7 +4,15 @@
   <label for="cat_age">Age</label>
   <input type="number" name="cat[age]" id="cat_age" value=<%=@cat.age%>>
   <label for="cat_color">Color</label>
-  <input type="text" name="cat[color]" id="cat_color" value=<%=@cat.color%>>
+  <select name="cat[color]" id="cat_color" value="<%=@cat.color%>">
+  <% @colors.each do |color| %>
+    <% if color == @cat.color %>
+      <option selected="selected" value=<%=color%>><%=color%></option>
+    <% else %>
+      <option value = <%=color%>><%=color%></option>
+    <% end %>
+  <% end %>
+  </select>
   <label for="cat_sex">Sex</label>
   <input type="text" name="cat[sex]" id="cat_sex" value=<%=@cat.sex%>>
   <label for="cat_birth_date">Birthday</label>
