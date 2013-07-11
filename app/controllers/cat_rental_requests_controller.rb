@@ -8,9 +8,8 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def create
-    request = CatRentalRequest.new(params[:cat_rental_request])
+    !request = CatRentalRequest.new(params[:cat_rental_request])
     if request.save
-      request
       @request = request
       render :show
     else
@@ -20,7 +19,6 @@ class CatRentalRequestsController < ApplicationController
 
   def show
     @request = CatRentalRequest.find(params[:id],params[:cat_id])
-    p session[:session_token]
   end
 
   def update

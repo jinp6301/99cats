@@ -1,7 +1,7 @@
-<form action="http://localhost:3000/session" method="post">
-  <input name="_method" type="hidden" value="delete" />
+<form_for action="http://localhost:3000/session" method="post">
+  <input name="_method" type="hidden" value="delete">
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
   <input type="submit" value="logout">
-</form>
+</form>x
